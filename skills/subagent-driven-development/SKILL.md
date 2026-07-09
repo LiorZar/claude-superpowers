@@ -82,6 +82,44 @@ digraph process {
 }
 ```
 
+## Confirm Git Workflow
+
+Before dispatching Task 1, confirm the branch and commit approach with the
+human — work happens in place on the current branch, so there is no worktree to
+set up, but git still needs their consent.
+
+Report the current branch (`git branch --show-current`), then ask exactly this:
+
+> You're on branch `<current-branch>`. How should I handle git for this work?
+>
+> 1. Create a new branch, then commit after each task
+> 2. Stay on `<current-branch>`, commit after each task
+> 3. Stay on `<current-branch>`, squash into one commit at the end
+> 4. Don't commit — I'll handle commits myself
+>
+> Which option?
+
+- Honor any git preference already stated in the user's instructions — do not
+  re-ask.
+- **Never** start implementation on `main`/`master` without explicit consent.
+  If the current branch is `main`/`master` and the user did not pick option 1,
+  confirm before proceeding.
+- This is a pre-flight question, asked once before Task 1 — it does **not**
+  violate Continuous Execution, which only forbids pausing *between* tasks.
+
+**How cadence interacts with subagents:** implementer subagents commit their own
+work per task by design — the per-task review packages (`scripts/review-package
+BASE HEAD`) and the recovery ledger (`commits <base7>..<head7>`) both diff each
+task's commits, so per-task commits are structural, not optional. The cadence
+answer therefore governs the *branch* and the *final shape*:
+- Options 1–2: keep the per-task commits as they are.
+- Option 3: implementers still commit per task during execution (the reviews
+  and ledger need it); squash them into one commit at finish
+  (superpowers:finishing-a-development-branch).
+- Option 4: not compatible with the review/recovery flow — if chosen, explain
+  that per-task commits are required for the reviews, and offer option 3
+  (squash at finish) instead.
+
 ## Pre-Flight Plan Review
 
 Before dispatching Task 1, scan the plan once for conflicts:

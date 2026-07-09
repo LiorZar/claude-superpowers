@@ -21,17 +21,44 @@ Load plan, review critically, execute all tasks, report when complete.
 3. If concerns: Raise them with your human partner before starting
 4. If no concerns: Create todos for the plan items and proceed
 
-### Step 2: Execute Tasks
+### Step 2: Confirm Git Workflow
+
+Work happens in place on the current branch — there is no worktree to set up —
+but the branch and commit approach still need the user's consent before any
+code is written.
+
+Report the current branch (`git branch --show-current`), then ask exactly this:
+
+> You're on branch `<current-branch>`. How should I handle git for this work?
+>
+> 1. Create a new branch, then commit after each task
+> 2. Stay on `<current-branch>`, commit after each task
+> 3. Stay on `<current-branch>`, one commit at the end
+> 4. Don't commit — I'll handle commits myself
+>
+> Which option?
+
+- Honor any git preference the user already stated in their instructions — do
+  not re-ask.
+- **Never** start implementation on `main`/`master` without explicit consent.
+  If the current branch is `main`/`master` and the user did not pick option 1,
+  confirm before proceeding.
+- Remember the chosen cadence — Step 3 commits according to it.
+
+### Step 3: Execute Tasks
 
 For each task:
 1. Mark as in_progress
 2. Follow each step exactly (plan has bite-sized steps)
 3. Run verifications as specified
-4. Mark as completed
+4. Commit per the cadence chosen in Step 2 (per-task cadence commits the task
+   now; end-of-run and manual cadences do not commit here)
+5. Mark as completed
 
-### Step 3: Complete Development
+### Step 4: Complete Development
 
 After all tasks complete and verified:
+- If Step 2 chose "one commit at the end," create that single commit now.
 - Announce: "I'm using the finishing-a-development-branch skill to complete this work."
 - **REQUIRED SUB-SKILL:** Use superpowers:finishing-a-development-branch
 - Follow that skill to verify tests, present options, execute choice
