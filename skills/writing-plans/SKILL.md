@@ -15,8 +15,10 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Context:** Work happens in place on the current branch — no isolated workspace is created for execution.
 
-**Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
-- (User preferences for plan location override this default)
+**Save every implementation plan to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
+
+This is mandatory. Create `docs/plans/` when it does not exist; do not save a
+plan in a tool-specific directory or any other location.
 
 ## Scope Check
 
@@ -157,7 +159,7 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Two execution options:**
+**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
 
 **1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
 

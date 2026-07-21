@@ -107,6 +107,27 @@ Skill-behavior evals live in [superpowers-evals](https://github.com/prime-radian
 
 Before proposing changes to skill design, workflow philosophy, or architecture, read existing skills and understand the project's design decisions. Superpowers has its own tested philosophy about skill design, agent behavior shaping, and terminology (e.g., "your human partner" is deliberate, not interchangeable with "the user"). Changes that rewrite the project's voice or restructure its approach without understanding why it exists will be rejected.
 
+## Fork Maintenance
+
+This repository is Lior's fork of `obra/superpowers`. When bringing in changes
+from upstream, preserve this fork's project-local documentation layout:
+
+- Implementation plans **must** be written to `docs/plans/`.
+- Design specifications belong in `docs/specs/`.
+- Do not restore the former nested documentation tree.
+- If an upstream documentation directory is solely for snapshots or screenshots,
+  use a dot-prefixed name instead (prefer `.snapshots/`).
+
+After every upstream merge, update any restored skill guidance, prompts, test
+fixtures, and documentation references to the canonical paths, then verify:
+
+```powershell
+$legacyDocs = Join-Path docs superpowers
+Test-Path $legacyDocs                         # expected: False
+rg -n ('docs/' + 'superpowers') .             # expected: no matches
+rg -n 'Save every implementation plan to:.*docs/plans' skills/writing-plans/SKILL.md
+```
+
 ## General
 
 - Read `.github/PULL_REQUEST_TEMPLATE.md` before submitting
