@@ -1,14 +1,14 @@
 {
   "name": "claude-superpowers",
-  "description": "Lior's personal fork of Superpowers (no-worktrees workflow, slim SessionStart injection, vitest wording) - forked from 6.1.0",
+  "description": "Lior's personal fork of Superpowers (no-worktrees workflow, slim SessionStart injection, vitest wording) - forked from 6.4.1",
   "owner": {
     "name": "Lior"
   },
   "plugins": [
     {
       "name": "superpowers",
-      "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques - Lior's no-worktrees fork of 6.1.0",
-      "version": "6.1.0",
+      "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques - Lior's no-worktrees fork of 6.4.1",
+      "version": "6.4.1",
       "source": "./",
       "author": {
         "name": "Lior"
