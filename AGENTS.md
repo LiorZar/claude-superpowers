@@ -114,8 +114,23 @@ Before proposing changes to skill design, workflow philosophy, or architecture, 
 - Test on at least one harness and report results in the environment table
 - Describe the problem you solved, not just what you changed
 
-## Fork-specific rules
+## Fork Maintenance
 
-This is a fork. See the **Fork Maintenance** section in [CLAUDE.md](CLAUDE.md) for the
-project-local documentation layout (`docs/plans/`, `docs/specs/`) that upstream merges
-must preserve.
+This repository is Lior's fork of `obra/superpowers`. When bringing in changes
+from upstream, preserve this fork's project-local documentation layout:
+
+- Implementation plans **must** be written to `docs/plans/`.
+- Design specifications belong in `docs/specs/`.
+- Do not restore the former nested documentation tree.
+- If an upstream documentation directory is solely for snapshots or screenshots,
+  use a dot-prefixed name instead (prefer `.snapshots/`).
+
+After every upstream merge, update any restored skill guidance, prompts, test
+fixtures, and documentation references to the canonical paths, then verify:
+
+```powershell
+$legacyDocs = Join-Path docs superpowers
+Test-Path $legacyDocs                         # expected: False
+rg -n ('docs/' + 'superpowers') .             # expected: no matches
+rg -n 'Save every implementation plan to:.*docs/plans' skills/writing-plans/SKILL.md
+```
